@@ -1,0 +1,1037 @@
+/* ============================================= */
+/*  멘탈+진심 — Design System                     */
+/*  Mobile-first · Minimal · Academic             */
+/* ============================================= */
+
+/* --- 서강체 (Sogang Font) --- */
+@font-face {
+  font-family: 'Sogang';
+  src: url('../fonts/SOGANGUNIVERSITY.woff2') format('woff2'),
+       url('../fonts/SOGANGUNIVERSITY.woff') format('woff');
+  font-weight: normal;
+  font-display: swap;
+}
+
+/* --- Custom Properties --- */
+:root {
+  /* Shared */
+  --color-bg: #FAFAF8;
+  --color-surface: #FFFFFF;
+  --color-text: #1A1A1A;
+  --color-text-secondary: #71706E;
+  --color-border: #E6E4E1;
+  --color-divider: #D4D2CF;
+
+  /* Sogang Cardinal (서강 카디날) */
+  --sogang-red: #B60005;
+  --sogang-red-light: #D4232A;
+  --sogang-red-dark: #8E0004;
+
+  /* 진심 — 서강 카디날 기반 */
+  --js-primary: #B60005;
+  --js-primary-light: #D4232A;
+  --js-accent: #C9A96E;
+  --js-bg: #FAF8F6;
+
+  /* Mentalist — 깊은 네이비 (학술적 권위) */
+  --mt-primary: #1E3A5F;
+  --mt-primary-light: #2C4F7C;
+  --mt-accent: #6B8DB5;
+  --mt-bg: #F7F9FC;
+
+  /* Typography */
+  --font-kr: 'Noto Sans KR', sans-serif;
+  --font-kr-serif: 'Sogang', 'Noto Serif KR', serif;
+  --font-en: 'Inter', sans-serif;
+  --font-en-serif: 'Cormorant Garamond', serif;
+
+  /* Spacing (8px grid) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 128px;
+
+  /* Transition */
+  --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 0.2s;
+  --duration-normal: 0.4s;
+  --duration-slow: 0.8s;
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-kr);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================================= */
+/*  SPLIT PAGE (갈림길)                            */
+/* ============================================= */
+
+.split-page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.split-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: flex var(--duration-slow) var(--ease-out);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.split-side::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.split-side--jinsim {
+  background: var(--js-bg);
+}
+
+.split-side--jinsim::before {
+  background: linear-gradient(135deg, rgba(182, 0, 5, 0.03), transparent);
+}
+
+.split-side--mentalist {
+  background: var(--mt-bg);
+}
+
+.split-side--mentalist::before {
+  background: linear-gradient(135deg, rgba(30, 58, 95, 0.03), transparent);
+}
+
+.split-side:hover::before {
+  opacity: 1;
+}
+
+.split-side:hover {
+  flex: 1.15;
+}
+
+/* Divider */
+.split-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--color-divider);
+  position: relative;
+  z-index: 10;
+  transform: scaleX(0);
+  animation: dividerDraw 1s var(--ease-out) 0.3s forwards;
+}
+
+/* Logo area */
+.split-logo {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.7s var(--ease-out) 0.9s forwards;
+}
+
+.split-logo--jinsim {
+  font-family: var(--font-kr-serif);
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--js-primary);
+}
+
+/* --- 진심 겹침 로고 (한글 + 한자 그림자) --- */
+.logo-jinsim-layered {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-jinsim-layered .logo-hangul {
+  position: relative;
+  z-index: 2;
+}
+
+.logo-jinsim-layered .logo-hanja {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-48%, -48%);
+  z-index: 1;
+  font-family: var(--font-kr-serif);
+  font-weight: 900;
+  color: var(--js-primary);
+  opacity: 0.08;
+  letter-spacing: 0.15em;
+  pointer-events: none;
+  user-select: none;
+  font-size: 1.15em;
+}
+
+/* 호버시 한자 살짝 드러남 */
+.split-side--jinsim:hover .logo-hanja,
+.hero:hover .logo-hanja {
+  opacity: 0.14;
+  transition: opacity 0.6s var(--ease-out);
+}
+
+.split-logo--mentalist {
+  font-family: var(--font-en-serif);
+  font-size: 2.5rem;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: var(--mt-primary);
+}
+
+.split-subtitle {
+  font-family: var(--font-kr);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-sm);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  animation: fadeUp 0.7s var(--ease-out) 1.1s forwards;
+}
+
+.split-btn {
+  margin-top: var(--space-lg);
+  padding: 8px 28px;
+  font-size: 0.7rem;
+  font-family: var(--font-en);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-divider);
+  border-radius: 100px;
+  color: var(--color-text-secondary);
+  transition: all var(--duration-normal) var(--ease-out);
+  opacity: 0;
+  animation: fadeUp 0.7s var(--ease-out) 1.3s forwards;
+}
+
+.split-side--jinsim .split-btn:hover {
+  border-color: var(--js-primary);
+  color: var(--js-primary);
+  background: rgba(182, 0, 5, 0.04);
+}
+
+.split-side--mentalist .split-btn:hover {
+  border-color: var(--mt-primary);
+  color: var(--mt-primary);
+  background: rgba(30, 58, 95, 0.04);
+}
+
+/* Split page exit animation */
+.split-page.exit-left .split-side--jinsim {
+  flex: 20;
+}
+.split-page.exit-left .split-side--mentalist {
+  flex: 0;
+  opacity: 0;
+}
+.split-page.exit-right .split-side--mentalist {
+  flex: 20;
+}
+.split-page.exit-right .split-side--jinsim {
+  flex: 0;
+  opacity: 0;
+}
+.split-page.exit-left .split-divider,
+.split-page.exit-right .split-divider {
+  opacity: 0;
+}
+
+/* ============================================= */
+/*  COMMON — Header                               */
+/* ============================================= */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(250, 250, 248, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.site-header.scrolled {
+  border-bottom-color: var(--color-border);
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.04);
+}
+
+.header-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: opacity var(--duration-fast);
+}
+
+.header-logo:hover {
+  opacity: 0.7;
+}
+
+.header-logo--jinsim {
+  font-family: var(--font-kr-serif);
+  color: var(--js-primary);
+}
+
+/* 헤더 내 소형 겹침 로고 */
+.header-logo .logo-hanja {
+  font-size: 1.1em;
+  opacity: 0.07;
+}
+
+.header-logo:hover .logo-hanja {
+  opacity: 0.13;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.header-logo--mentalist {
+  font-family: var(--font-en-serif);
+  font-style: italic;
+  color: var(--mt-primary);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.header-nav a {
+  font-size: 0.8rem;
+  font-family: var(--font-en);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  transition: color var(--duration-fast);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.header-nav a:hover {
+  color: var(--color-text);
+}
+
+.header-nav a .ext-icon {
+  font-size: 0.65rem;
+  opacity: 0.5;
+  transition: transform var(--duration-fast), opacity var(--duration-fast);
+}
+
+.header-nav a:hover .ext-icon {
+  transform: translate(1px, -1px);
+  opacity: 0.8;
+}
+
+/* Mobile hamburger */
+.menu-toggle {
+  display: none;
+  width: 24px;
+  height: 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(2.3px, 2.3px);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(2.3px, -2.3px);
+}
+
+/* Mobile nav overlay */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(250, 250, 248, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xl);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.mobile-nav.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav a {
+  font-size: 1.1rem;
+  font-family: var(--font-en);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ============================================= */
+/*  COMMON — Hero Section                         */
+/* ============================================= */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-4xl) var(--space-lg) var(--space-3xl);
+}
+
+.hero-greeting {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  line-height: 1.8;
+  margin-bottom: var(--space-xl);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.8s var(--ease-out) 0.2s forwards;
+}
+
+.hero-logo {
+  margin-bottom: var(--space-xl);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.8s var(--ease-out) 0.5s forwards;
+}
+
+.hero-logo--jinsim {
+  font-family: var(--font-kr-serif);
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--js-primary);
+  letter-spacing: 0.2em;
+}
+
+.hero-logo--mentalist {
+  font-family: var(--font-en-serif);
+  font-size: 4rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--mt-primary);
+  letter-spacing: 0.1em;
+}
+
+.hero-slogan {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.03em;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.8s var(--ease-out) 0.8s forwards;
+}
+
+.hero-slogan em {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* ============================================= */
+/*  Photo Gallery — Scroll Spread Effect          */
+/* ============================================= */
+
+.gallery-section {
+  padding: var(--space-3xl) var(--space-lg);
+  overflow: hidden;
+}
+
+.gallery-label {
+  text-align: center;
+  font-size: 0.7rem;
+  font-family: var(--font-en);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2xl);
+}
+
+.photo-gallery {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-card {
+  position: absolute;
+  width: 220px;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: transform var(--duration-slow) var(--ease-out),
+              box-shadow var(--duration-slow) var(--ease-out);
+  will-change: transform;
+}
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Placeholder for photos */
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.photo-placeholder--jinsim {
+  background: linear-gradient(135deg, #F5E6E8, #F0DCD0);
+}
+
+.photo-placeholder--mentalist {
+  background: linear-gradient(135deg, #E4EAF2, #D8E2EE);
+}
+
+/* Stacked state (default) */
+.photo-card:nth-child(1) { transform: rotate(-4deg) translateX(-15px); z-index: 4; }
+.photo-card:nth-child(2) { transform: rotate(2.5deg) translateX(8px) translateY(5px); z-index: 3; }
+.photo-card:nth-child(3) { transform: rotate(-1.5deg) translateX(-5px) translateY(-5px); z-index: 2; }
+.photo-card:nth-child(4) { transform: rotate(3.5deg) translateX(12px); z-index: 1; }
+
+/* Spread state — driven by JS --spread custom property */
+.photo-gallery[data-spread] .photo-card:nth-child(1) {
+  transform: rotate(calc(-4deg + 3deg * var(--spread, 0)))
+             translateX(calc(-15px + -280px * var(--spread, 0)));
+}
+.photo-gallery[data-spread] .photo-card:nth-child(2) {
+  transform: rotate(calc(2.5deg - 1.5deg * var(--spread, 0)))
+             translateX(calc(8px + -102px * var(--spread, 0)))
+             translateY(calc(5px - 5px * var(--spread, 0)));
+}
+.photo-gallery[data-spread] .photo-card:nth-child(3) {
+  transform: rotate(calc(-1.5deg + 0.5deg * var(--spread, 0)))
+             translateX(calc(-5px + 100px * var(--spread, 0)))
+             translateY(calc(-5px + 5px * var(--spread, 0)));
+}
+.photo-gallery[data-spread] .photo-card:nth-child(4) {
+  transform: rotate(calc(3.5deg - 2.5deg * var(--spread, 0)))
+             translateX(calc(12px + 275px * var(--spread, 0)));
+}
+
+/* ============================================= */
+/*  Activities List (Mentalist)                   */
+/* ============================================= */
+
+.activities-section {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg) var(--space-3xl);
+}
+
+.activities-section h3 {
+  font-size: 0.7rem;
+  font-family: var(--font-en);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.activity-item {
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+
+.activity-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.activity-item .activity-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.activity-item .activity-desc {
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+
+/* ============================================= */
+/*  Notice Section (진심)                         */
+/* ============================================= */
+
+.notice-section {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg);
+}
+
+.notice-section h3 {
+  font-size: 0.7rem;
+  font-family: var(--font-en);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.notice-item {
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-md);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+
+.notice-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notice-item .notice-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  flex: 1;
+}
+
+.notice-item .notice-date {
+  font-size: 0.75rem;
+  font-family: var(--font-en);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+/* ============================================= */
+/*  Subscribe / Contact Section                   */
+/* ============================================= */
+
+.subscribe-section {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.subscribe-section h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.subscribe-section p {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xl);
+}
+
+.subscribe-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  border-radius: 100px;
+  letter-spacing: 0.02em;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.btn-outline {
+  border: 1px solid var(--color-divider);
+  color: var(--color-text);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  border-color: var(--color-text);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.btn-jinsim {
+  background: var(--js-primary);
+  color: #fff;
+}
+
+.btn-jinsim:hover {
+  background: var(--js-primary-light);
+  box-shadow: 0 4px 16px rgba(182, 0, 5, 0.25);
+}
+
+.btn-mentalist {
+  background: var(--mt-primary);
+  color: #fff;
+}
+
+.btn-mentalist:hover {
+  background: var(--mt-primary-light);
+  box-shadow: 0 4px 16px rgba(30, 58, 95, 0.2);
+}
+
+.btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================= */
+/*  CTA Section (Mentalist)                       */
+/* ============================================= */
+
+.cta-section {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg) var(--space-4xl);
+}
+
+.cta-section h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.cta-section p {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xl);
+}
+
+.cta-section .btn {
+  padding: 14px 40px;
+  font-size: 0.9rem;
+}
+
+/* ============================================= */
+/*  Footer                                        */
+/* ============================================= */
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.footer-sogang-logo {
+  height: 32px;
+  width: auto;
+  margin: 0 auto var(--space-md);
+  opacity: 0.6;
+}
+
+.footer-logo {
+  font-family: var(--font-en);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.footer-address {
+  font-size: 0.72rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+}
+
+.footer-copy {
+  font-size: 0.68rem;
+  font-family: var(--font-en);
+  color: var(--color-divider);
+}
+
+/* ============================================= */
+/*  Animations                                    */
+/* ============================================= */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes dividerDraw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Fade-in-up utility for scroll reveals */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================= */
+/*  Responsive — Tablet                           */
+/* ============================================= */
+
+@media (min-width: 768px) {
+  .split-page {
+    flex-direction: row;
+  }
+
+  .split-divider {
+    width: 1px;
+    height: 100%;
+    animation-name: dividerDrawVertical;
+  }
+
+  @keyframes dividerDrawVertical {
+    from { transform: scaleY(0); }
+    to   { transform: scaleY(1); }
+  }
+
+  .split-logo--jinsim,
+  .split-logo--mentalist {
+    font-size: 3.2rem;
+  }
+
+  .header-inner {
+    height: 64px;
+  }
+
+  .menu-toggle { display: none !important; }
+  .header-nav { display: flex !important; }
+
+  .hero-logo--jinsim,
+  .hero-logo--mentalist {
+    font-size: 5.5rem;
+  }
+
+  .hero-greeting {
+    font-size: 0.95rem;
+  }
+
+  .photo-card {
+    width: 240px;
+    height: 320px;
+  }
+}
+
+/* ============================================= */
+/*  Responsive — Mobile                           */
+/* ============================================= */
+
+@media (max-width: 767px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .header-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: flex;
+  }
+
+  .hero {
+    padding: var(--space-3xl) var(--space-md) var(--space-2xl);
+  }
+
+  .hero-logo--jinsim,
+  .hero-logo--mentalist {
+    font-size: 2.8rem;
+  }
+
+  .hero-greeting {
+    font-size: 0.82rem;
+  }
+
+  .hero-slogan {
+    font-size: 0.82rem;
+  }
+
+  .split-logo--jinsim,
+  .split-logo--mentalist {
+    font-size: 2rem;
+  }
+
+  /* Mobile gallery: smaller cards, tighter spread */
+  .photo-gallery {
+    height: 320px;
+  }
+
+  .photo-card {
+    width: 160px;
+    height: 220px;
+    border-radius: 8px;
+  }
+
+  .photo-gallery[data-spread] .photo-card:nth-child(1) {
+    transform: rotate(calc(-4deg + 3deg * var(--spread, 0)))
+               translateX(calc(-10px + -140px * var(--spread, 0)));
+  }
+  .photo-gallery[data-spread] .photo-card:nth-child(2) {
+    transform: rotate(calc(2.5deg - 1.5deg * var(--spread, 0)))
+               translateX(calc(5px + -50px * var(--spread, 0)))
+               translateY(calc(5px - 5px * var(--spread, 0)));
+  }
+  .photo-gallery[data-spread] .photo-card:nth-child(3) {
+    transform: rotate(calc(-1.5deg + 0.5deg * var(--spread, 0)))
+               translateX(calc(-5px + 48px * var(--spread, 0)))
+               translateY(calc(-5px + 5px * var(--spread, 0)));
+  }
+  .photo-gallery[data-spread] .photo-card:nth-child(4) {
+    transform: rotate(calc(3.5deg - 2.5deg * var(--spread, 0)))
+               translateX(calc(10px + 138px * var(--spread, 0)));
+  }
+
+  .gallery-section {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  .subscribe-section,
+  .cta-section {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  .subscribe-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}
+
+/* ============================================= */
+/*  Page-specific backgrounds                     */
+/* ============================================= */
+
+body.page-jinsim {
+  background: var(--js-bg);
+}
+
+body.page-jinsim .site-header {
+  background: rgba(250, 248, 246, 0.85);
+}
+
+body.page-mentalist {
+  background: var(--mt-bg);
+}
+
+body.page-mentalist .site-header {
+  background: rgba(247, 249, 252, 0.85);
+}

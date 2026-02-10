@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:saaslandingpage.com)",
+      "WebFetch(domain:www.sogang.ac.kr)",
+      "WebSearch",
+      "Bash(curl:*)",
+      "WebFetch(domain:en.namu.wiki)",
+      "WebFetch(domain:namu.wiki)",
+      "WebFetch(domain:sogang.ac.kr)",
+      "WebFetch(domain:ccsun7.sogang.ac.kr)",
+      "WebFetch(domain:commons.wikimedia.org)",
+      "Bash(open:*)"
+    ]
+  }
+}
