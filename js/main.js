@@ -114,7 +114,7 @@ function initPhotoGallery() {
 
 /* --- Scroll Reveal --- */
 function initScrollReveal() {
-  const elements = document.querySelectorAll('.reveal, .notice-item, .activity-item');
+  const elements = document.querySelectorAll('.reveal, .intro, .notice-item, .activity-item');
   if (!elements.length) return;
 
   const observer = new IntersectionObserver((entries) => {

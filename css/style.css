@@ -514,6 +514,17 @@ img {
   color: var(--color-text);
 }
 
+.mobile-br {
+  display: none;
+}
+
+.hero-cta {
+  margin-top: var(--space-xl);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.8s var(--ease-out) 1.1s forwards;
+}
+
 /* ============================================= */
 /*  Photo Gallery — Scroll Spread Effect          */
 /* ============================================= */
@@ -650,6 +661,116 @@ img {
 .activity-item .activity-desc {
   font-size: 0.78rem;
   color: var(--color-text-secondary);
+}
+
+/* ============================================= */
+/*  Intro Sections (Mentalist — 소개 영역)        */
+/* ============================================= */
+
+.intro {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg) 0;
+  text-align: center;
+}
+
+.intro--last {
+  padding-bottom: var(--space-4xl);
+}
+
+/* Photo container — shared */
+.intro__photos {
+  margin-bottom: var(--space-lg);
+}
+
+/* Individual photo */
+.intro__photo {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+}
+
+.intro__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+.intro__photo .photo-placeholder {
+  aspect-ratio: 4 / 3;
+}
+
+/* Description text */
+.intro__text {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+}
+
+/* --- Layout: Duo (섹션 1 — 토론) --- */
+.intro__photos--duo {
+  display: grid;
+  grid-template-columns: 1fr 0.88fr;
+  gap: var(--space-md);
+  align-items: end;
+}
+
+.intro__photos--duo .intro__photo--offset {
+  transform: translateY(-12px);
+}
+
+/* --- Layout: Solo (섹션 3 — 발제) --- */
+.intro__photos--solo {
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro__photos--solo .intro__photo {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.09);
+}
+
+.intro__photos--solo img,
+.intro__photos--solo .photo-placeholder {
+  aspect-ratio: 3 / 2;
+}
+
+/* --- Layout: Stagger (섹션 4 — 다과회/특강) --- */
+.intro__photos--stagger {
+  display: grid;
+  grid-template-columns: 0.92fr 1fr;
+  gap: var(--space-md);
+  align-items: start;
+}
+
+.intro__photos--stagger .intro__photo:nth-child(2) {
+  transform: translateY(24px);
+}
+
+/* --- Layout: Trio (섹션 5 — 친목) --- */
+.intro__photos--trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  align-items: end;
+}
+
+.intro__photos--trio .intro__photo--lift {
+  transform: translateY(-16px);
+}
+
+.intro__photos--trio img,
+.intro__photos--trio .photo-placeholder {
+  aspect-ratio: 3 / 4;
+}
+
+/* --- Intro inside photo-gallery (섹션 2 — 논문) --- */
+.intro .photo-gallery {
+  margin-bottom: var(--space-lg);
 }
 
 /* ============================================= */
@@ -960,6 +1081,10 @@ img {
     font-size: 0.82rem;
   }
 
+  .mobile-br {
+    display: inline;
+  }
+
   .split-logo--jinsim,
   .split-logo--mentalist {
     font-size: 2rem;
@@ -997,6 +1122,52 @@ img {
 
   .gallery-section {
     padding: var(--space-2xl) var(--space-md);
+  }
+
+  /* Mobile intro sections */
+  .intro {
+    padding: var(--space-2xl) var(--space-md) 0;
+  }
+
+  .intro--last {
+    padding-bottom: var(--space-3xl);
+  }
+
+  .intro__text {
+    font-size: 0.82rem;
+  }
+
+  .intro__photo {
+    border-radius: 8px;
+  }
+
+  .intro__photos--duo {
+    gap: var(--space-sm);
+  }
+
+  .intro__photos--duo .intro__photo--offset {
+    transform: translateY(-8px);
+  }
+
+  .intro__photos--stagger {
+    gap: var(--space-sm);
+  }
+
+  .intro__photos--stagger .intro__photo:nth-child(2) {
+    transform: translateY(16px);
+  }
+
+  .intro__photos--trio {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+  }
+
+  .intro__photos--trio .intro__photo--lift {
+    transform: translateY(-10px);
+  }
+
+  .intro__photos--solo {
+    max-width: 100%;
   }
 
   .subscribe-section,
