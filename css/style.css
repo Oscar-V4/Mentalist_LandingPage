@@ -71,7 +71,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 17px;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -465,7 +465,7 @@ img {
 }
 
 .hero-greeting {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--color-text-secondary);
   letter-spacing: 0.02em;
   line-height: 1.8;
@@ -500,7 +500,7 @@ img {
 }
 
 .hero-slogan {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--color-text-secondary);
   letter-spacing: 0.03em;
   opacity: 0;
@@ -546,9 +546,9 @@ img {
 
 .photo-gallery {
   position: relative;
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
-  height: 380px;
+  height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -556,8 +556,8 @@ img {
 
 .photo-card {
   position: absolute;
-  width: 220px;
-  height: 300px;
+  width: 250px;
+  height: 340px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
@@ -703,11 +703,11 @@ img {
 
 /* Description text */
 .intro__text {
-  font-size: 0.88rem;
+  font-size: 1rem;
   color: var(--color-text-secondary);
-  max-width: 540px;
+  max-width: 600px;
   margin: 0 auto;
-  line-height: 1.75;
+  line-height: 1.8;
   letter-spacing: 0.01em;
 }
 
@@ -771,6 +771,76 @@ img {
 /* --- Intro inside photo-gallery (섹션 2 — 논문) --- */
 .intro .photo-gallery {
   margin-bottom: var(--space-lg);
+}
+
+/* --- Tinted background for rhythm --- */
+.intro--tinted {
+  background: rgba(30, 58, 95, 0.02);
+  overflow: hidden;
+}
+
+/* ============================================= */
+/*  Side-by-side Intro (좌우 교차 레이아웃)       */
+/* ============================================= */
+
+.intro-side {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.intro-side__media {
+  overflow: hidden;
+}
+
+.intro-side__body {
+  text-align: left;
+}
+
+.intro-side__title {
+  font-family: var(--font-kr);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.01em;
+}
+
+.intro-side__desc {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+}
+
+/* ============================================= */
+/*  Directional Scroll Reveal Animations         */
+/* ============================================= */
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* ============================================= */
@@ -908,13 +978,13 @@ img {
 }
 
 .cta-section h2 {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   font-weight: 600;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 
 .cta-section p {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--color-text-secondary);
   margin-bottom: var(--space-xl);
 }
@@ -1061,16 +1131,36 @@ img {
 
   .hero-logo--jinsim,
   .hero-logo--mentalist {
-    font-size: 5.5rem;
+    font-size: 6rem;
   }
 
   .hero-greeting {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
   }
 
   .photo-card {
-    width: 240px;
-    height: 320px;
+    width: 270px;
+    height: 360px;
+  }
+
+  /* Side-by-side layout on tablet+ */
+  .intro-side {
+    grid-template-columns: 3fr 2fr;
+    gap: var(--space-3xl);
+    padding: var(--space-4xl) var(--space-xl);
+  }
+
+  /* Reverse: text left, media right */
+  .intro-side--reverse {
+    direction: rtl;
+  }
+
+  .intro-side--reverse > * {
+    direction: ltr;
+  }
+
+  .intro-side__title {
+    font-size: 1.6rem;
   }
 }
 
@@ -1152,6 +1242,32 @@ img {
   }
 
   /* Mobile intro sections */
+  .intro-side {
+    padding: var(--space-2xl) var(--space-md);
+    gap: var(--space-lg);
+    overflow: hidden;
+  }
+
+  .intro-side__body {
+    text-align: center;
+  }
+
+  /* 모바일 방향 애니메이션 축소 (오버플로우 방지) */
+  .reveal-left {
+    transform: translateX(-20px);
+  }
+
+  .reveal-right {
+    transform: translateX(20px);
+  }
+
+  .intro--tinted {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
   .intro {
     padding: var(--space-2xl) var(--space-md) 0;
   }
