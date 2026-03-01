@@ -919,9 +919,36 @@ img {
   margin-bottom: var(--space-xl);
 }
 
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
 .cta-section .btn {
   padding: 14px 40px;
   font-size: 0.9rem;
+}
+
+.btn-kakao {
+  background: #FEE500;
+  color: #191919;
+}
+
+.btn-kakao:hover {
+  background: #F5DC00;
+  box-shadow: 0 4px 16px rgba(254, 229, 0, 0.35);
+}
+
+.btn-instagram {
+  background: linear-gradient(135deg, #833AB4, #E1306C, #F77737);
+  color: #fff;
+}
+
+.btn-instagram:hover {
+  background: linear-gradient(135deg, #7232A1, #D42D65, #E06D30);
+  box-shadow: 0 4px 16px rgba(225, 48, 108, 0.3);
 }
 
 /* ============================================= */
@@ -1175,7 +1202,8 @@ img {
     padding: var(--space-2xl) var(--space-md);
   }
 
-  .subscribe-buttons {
+  .subscribe-buttons,
+  .cta-buttons {
     flex-direction: column;
     align-items: center;
   }
