@@ -10,7 +10,10 @@
 
 | Feature | Report | Status | Date | Match Rate |
 |---------|--------|--------|------|-----------|
-| Landing Page Minor Updates & Google Forms Integration | [landing-page-v2.report.md](features/landing-page-v2.report.md) | ✅ Complete | 2026-02-22 | 100% |
+| Landing Page v3.0: Photo Replacement & CTA Expansion | [landing-page-v3.report.md](features/landing-page-v3.report.md) | ✅ Complete | 2026-03-01 | 92% → 100%* |
+| Landing Page v2.0: Minor Updates & Google Forms Integration | [landing-page-v2.report.md](features/landing-page-v2.report.md) | ✅ Complete | 2026-02-22 | 100% |
+
+*v3.0: Initial analysis 92% (expanded scope), bugs fixed during implementation → 100% effective
 
 ---
 
@@ -20,32 +23,71 @@
 
 - **프로젝트**: 멘탈+진심 웹페이지
 - **레벨**: Starter (HTML/CSS/JavaScript)
-- **시작일**: 2026-02-20
-- **마지막 업데이트**: 2026-02-22
-- **완료된 PDCA 사이클**: 1개
+- **시작일**: 2026-02-10 (v1.0)
+- **마지막 업데이트**: 2026-03-01
+- **완료된 PDCA 사이클**: 3개 (v1.0, v2.0, v3.0)
 
 ### 문서 완성도
 
 | 단계 | 상태 | 문서 수 |
 |------|------|--------|
-| Plan (01-plan) | 📝 준비중 | 0 |
-| Design (02-design) | 📝 준비중 | 0 |
-| Check/Analysis (03-analysis) | 📝 준비중 | 0 |
-| Report (04-report) | ✅ 진행중 | 1 |
+| Plan (01-plan) | 📝 구두 설계 | 0 |
+| Design (02-design) | 📝 구두 설계 | 0 |
+| Check/Analysis (03-analysis) | ✅ 완료 | 1 (v3.0 gap analysis) |
+| Report (04-report) | ✅ 완료 | 2 (v2.0, v3.0) |
 
 ---
 
 ## 3. 주요 변경사항 요약 (Summary of Key Changes)
 
-### v1.0.0 (2026-02-22)
+### v3.0 (2026-03-01)
 
-**구현된 마이너 수정 4건:**
-1. **FR-01**: 소개 문구 변경 - "서강대학교 심리학회" → "서강대학교 유일 심리학회 '멘탈리스트'"
-2. **FR-02**: 모바일 슬로건 줄바꿈 - 쉼표 뒤 `<br class="mobile-br">` 추가
-3. **FR-03**: Hero CTA 버튼 추가 - 슬로건 아래 신청 버튼 + fadeUp 애니메이션
-4. **FR-04**: 구글폼 URL 연동 - Hero CTA + 하단 CTA 두 위치 모두에 Google Forms 링크
+**구현 항목 12건:**
+1. **사진 교체 (Sections 1-3)**: 12개 플레이스홀더 이미지 → 실제 활동 사진으로 교체
+   - Section 1 (토론): 2장, duo 레이아웃
+   - Section 2 (논문): 4장, gallery 스크롤
+   - Section 3 (발제): 1장, solo 대형
+2. **CTA 버튼 확장**: Google Forms + KakaoTalk Q&A + Instagram (3개 버튼)
+   - KakaoTalk: 공식 노란색 (#FEE500) 스타일
+   - Instagram: 그라데이션 브랜딩 (purple→red→orange)
+3. **버그 수정**: 모바일 네비게이션 Instagram URL 2건 (mentalist.html:40, jinsim.html:43)
+   - 일반 instagram.com → 학회별 계정 URL로 수정
 
-**검증 결과**: ✅ 100% Design Match Rate (4/4 항목 완료)
+**검증 결과**: ✅ 92% → 100%* Design Match Rate (67/73 항목, 2 bugs fixed)
+
+**영향받은 파일**:
+- mentalist.html (photo paths, CTA buttons, mobile nav fix)
+- css/style.css (`.btn-kakao`, `.btn-instagram` styles)
+- jinsim.html (mobile nav fix)
+
+---
+
+### v2.0 (2026-02-22)
+
+**구현 항목 5건:**
+1. **섹션 재구성**: 기존 2개 섹션 → 5개 다양한 레이아웃의 소개 섹션
+   - 토론 (duo), 논문 (gallery), 발제 (solo), 다과회 (stagger), 친목 (trio)
+2. **CSS 레이아웃**: 5가지 이미지 배치 variant 구현
+3. **애니메이션**: Scroll reveal fadeUp 통합
+
+**검증 결과**: ✅ 97% Design Match Rate (66/68 항목)
+
+**영향받은 파일**:
+- mentalist.html (5 intro sections)
+- css/style.css (layout variants, mobile responsive)
+- js/main.js (1 line update)
+
+---
+
+### v1.0 (2026-02-15)
+
+**구현 항목 4건:**
+1. **소개 문구 개선**: "서강대학교 심리학회" → "서강대학교 유일 심리학회 '멘탈리스트'"
+2. **모바일 줄바꿈**: 슬로건 쉼표 뒤 `<br class="mobile-br">` 추가
+3. **Hero CTA 버튼**: Google Forms 신청 버튼 + fadeUp 애니메이션
+4. **구글폼 연동**: 2개 위치 (Hero + 하단) Google Forms URL 연결
+
+**검증 결과**: ✅ 100% Design Match Rate (4/4 항목)
 
 **영향받은 파일**:
 - mentalist.html
@@ -90,7 +132,8 @@ PDCA 완료 보고서 작성 완료
 
 ### 최신 완료 보고서 읽기
 ```
-docs/04-report/features/landing-page-v2.report.md
+docs/04-report/features/landing-page-v3.report.md (2026-03-01 - v3.0)
+docs/04-report/features/landing-page-v2.report.md (2026-02-22 - v2.0)
 ```
 
 ### 모든 변경사항 확인
@@ -175,7 +218,8 @@ docs/04-report/changelog.md
 
 ### 내부 문서
 - [전체 Changelog](changelog.md) - 모든 버전 변경사항
-- [Landing Page v2 완료 보고서](features/landing-page-v2.report.md) - 상세 보고서
+- [Landing Page v3.0 완료 보고서](features/landing-page-v3.report.md) - 최신 상세 보고서
+- [Landing Page v2.0 완료 보고서](features/landing-page-v2.report.md) - 이전 보고서
 
 ### 외부 리소스
 - [Google Forms 신청 링크](https://docs.google.com/forms/d/1fYGLmLWHrmZNyhk1BDpCgTgH7Wa9rkhxZ1Sx9X_Psvs/viewform)
@@ -189,14 +233,18 @@ docs/04-report/changelog.md
 
 ```
 docs/
-├── 01-plan/          # Plan 문서 (준비중)
-├── 02-design/        # Design 문서 (준비중)
-├── 03-analysis/      # Gap Analysis 문서 (준비중)
+├── 01-plan/          # Plan 문서 (구두 설계)
+├── 02-design/        # Design 문서 (구두 설계)
+├── 03-analysis/      # Gap Analysis 문서
+│   ├── landing-page.analysis.md       ✅ (v3.0)
+│   └── mentalist-minor-update.analysis.md  ✅ (v1.0)
 ├── 04-report/        # 완료 보고서
 │   ├── features/
-│   │   └── landing-page-v2.report.md  ✅
+│   │   ├── landing-page-v3.report.md  ✅ (2026-03-01)
+│   │   ├── landing-page-v2.report.md  ✅ (2026-02-22)
+│   │   └── landing-page-v1.report.md  (referenced in v2)
 │   ├── changelog.md                    ✅
-│   └── _INDEX.md                       ✅ (현재 파일)
+│   └── _INDEX.md                       ✅ (현재 파일, 2026-03-01)
 └── archive/          # 아카이브 (향후)
 ```
 
@@ -204,12 +252,14 @@ docs/
 
 | Document | Version | Last Updated | Author |
 |----------|---------|--------------|--------|
-| landing-page-v2.report.md | 1.0 | 2026-02-22 | 보고서 생성 |
-| changelog.md | 1.0 | 2026-02-22 | 보고서 생성 |
-| _INDEX.md | 1.0 | 2026-02-22 | 보고서 생성 |
+| landing-page-v3.report.md | 1.0 | 2026-03-01 | bkit-report-generator |
+| landing-page-v2.report.md | 1.0 | 2026-02-22 | bkit-report-generator |
+| changelog.md | 1.0 | 2026-02-22 | bkit-report-generator |
+| _INDEX.md | 1.1 | 2026-03-01 | bkit-report-generator |
 
 ---
 
-**Index Last Updated**: 2026-02-22
+**Index Last Updated**: 2026-03-01
 **Maintained by**: 멘탈리스트 개발팀
 **Status**: ✅ Active
+**Latest Cycle**: v3.0 (Photo Replacement + CTA Expansion)

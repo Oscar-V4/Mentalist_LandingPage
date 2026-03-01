@@ -1,0 +1,325 @@
+{
+  "project": {
+    "name": "멘탈+진심 웹페이지",
+    "level": "Starter",
+    "description": "서강대학교 심리학회 'Mentalist' 랜딩페이지 정적 웹사이트",
+    "startDate": "2026-02-20",
+    "lastUpdated": "2026-03-01"
+  },
+  "features": {
+    "landing-page-v2": {
+      "name": "Landing Page Minor Updates & Google Forms Integration",
+      "description": "클라이언트 피드백 기반 마이너 수정 4건 + 구글폼 연동",
+      "phase": "completed",
+      "status": "✅ Complete",
+      "startDate": "2026-02-22",
+      "completedDate": "2026-02-22",
+      "duration": "1 day",
+      "matchRate": 100,
+      "iterationCount": 0,
+      "requirements": {
+        "total": 4,
+        "completed": 4,
+        "incomplete": 0
+      },
+      "documents": {
+        "plan": {
+          "status": "N/A",
+          "path": "docs/01-plan/features/landing-page-v2.plan.md",
+          "note": "구두 피드백으로 진행"
+        },
+        "design": {
+          "status": "N/A",
+          "path": "docs/02-design/features/landing-page-v2.design.md",
+          "note": "마이너 업데이트로 직접 구현"
+        },
+        "analysis": {
+          "status": "Pending",
+          "path": "docs/03-analysis/landing-page-v2.analysis.md",
+          "note": "로컬 브라우저 테스트 완료, 자동 분석 보류"
+        },
+        "report": {
+          "status": "✅ Complete",
+          "path": "docs/04-report/features/landing-page-v2.report.md",
+          "date": "2026-02-22"
+        }
+      },
+      "implementation": {
+        "filesModified": 2,
+        "linesAdded": 15,
+        "linesRemoved": 5,
+        "files": [
+          {
+            "path": "mentalist.html",
+            "changes": "소개 문구 변경, 슬로건 br 추가, Hero CTA 버튼 추가, 구글폼 URL 연동"
+          },
+          {
+            "path": "css/style.css",
+            "changes": ".mobile-br 스타일 추가, .hero-cta 애니메이션 추가"
+          }
+        ]
+      },
+      "requirements_detail": [
+        {
+          "id": "FR-01",
+          "title": "소개 문구 변경",
+          "description": "서강대학교 심리학회 → 서강대학교 유일 심리학회 '멘탈리스트'",
+          "status": "✅ Complete",
+          "implementation": "mentalist.html line 48"
+        },
+        {
+          "id": "FR-02",
+          "title": "모바일 슬로건 줄바꿈",
+          "description": "쉼표 뒤 <br class='mobile-br'> 추가, CSS로 데스크탑 숨김/모바일 표시",
+          "status": "✅ Complete",
+          "implementation": "mentalist.html line 53, css/style.css line 517-519, 974-976"
+        },
+        {
+          "id": "FR-03",
+          "title": "Hero CTA 버튼 추가",
+          "description": "슬로건 아래 신청 버튼 + fadeUp 애니메이션",
+          "status": "✅ Complete",
+          "implementation": "mentalist.html line 55, css/style.css line 521-526"
+        },
+        {
+          "id": "FR-04",
+          "title": "구글폼 URL 연동",
+          "description": "Hero CTA + 하단 CTA 두 버튼 모두 Google Forms 링크 연결",
+          "status": "✅ Complete",
+          "implementation": "mentalist.html lines 55, 106 (동일 URL)"
+        }
+      ],
+      "qualityMetrics": {
+        "designMatchRate": 100,
+        "testCoverage": "Manual",
+        "testStatus": "✅ Passed",
+        "issues": 0,
+        "criticalIssues": 0
+      },
+      "testing": {
+        "method": "Manual browser testing",
+        "environments": [
+          "Desktop (Chrome, Safari, Firefox)",
+          "Mobile (iOS Safari, Chrome Mobile)",
+          "Tablet (iPad)"
+        ],
+        "results": "✅ All tests passed",
+        "responsiveBreakpoint": "767px"
+      },
+      "lessonsLearned": {
+        "whatWentWell": [
+          "클라이언트 피드백 신속한 반영",
+          "기존 설계 시스템 활용으로 일관성 유지",
+          "BEM 클래스명 규칙 준수",
+          "마이너 업데이트 효율성"
+        ],
+        "areasForImprovement": [
+          "명확한 요구사항 문서화 부재",
+          "CSS 클래스명 재검토 (mobile-br의 명확성)",
+          "수동 테스트의 한계"
+        ],
+        "nextActions": [
+          "마이너 업데이트도 Plan 문서 작성",
+          "CSS 클래스명 표준화 강화",
+          "자동 회귀 테스트 도입"
+        ]
+      }
+    },
+    "landing-page": {
+      "name": "Mentalist 소개 영역 재구성",
+      "description": "기존 .gallery-section과 .activities-section을 제거하고 5개 신규 소개 섹션으로 재구성 (BEM 네이밍, 반응형)",
+      "phase": "completed",
+      "status": "✅ Complete",
+      "startDate": "2026-02-20",
+      "completedDate": "2026-02-22",
+      "duration": "3 days",
+      "matchRate": 92,
+      "iterationCount": 0,
+      "requirements": {
+        "total": 7,
+        "completed": 7,
+        "incomplete": 0
+      },
+      "documents": {
+        "plan": {
+          "status": "N/A",
+          "path": "docs/01-plan/features/landing-page.plan.md",
+          "note": "구두 설계"
+        },
+        "design": {
+          "status": "N/A",
+          "path": "docs/02-design/features/landing-page.design.md",
+          "note": "구두 설계"
+        },
+        "analysis": {
+          "status": "✅ Complete",
+          "path": "docs/03-analysis/landing-page.analysis.md",
+          "date": "2026-03-01",
+          "version": "3.0"
+        },
+        "report": {
+          "status": "✅ Complete",
+          "path": "docs/04-report/features/landing-page.report.md",
+          "date": "2026-02-22"
+        }
+      },
+      "implementation": {
+        "filesModified": 3,
+        "linesAdded": 187,
+        "linesRemoved": 39,
+        "files": [
+          {
+            "path": "mentalist.html",
+            "changes": "기존 .gallery-section + .activities-section 제거, 5개 .intro 섹션 신규 삽입"
+          },
+          {
+            "path": "css/style.css",
+            "changes": ".intro 관련 CSS 142줄 추가 (base, layout variants, mobile responsive)"
+          },
+          {
+            "path": "js/main.js",
+            "changes": "initScrollReveal()에 .intro 셀렉터 추가"
+          }
+        ]
+      },
+      "sections": {
+        "section_1": {
+          "name": "토론",
+          "layout": "duo (2column)",
+          "photos": 2,
+          "status": "✅ Complete"
+        },
+        "section_2": {
+          "name": "논문 분야",
+          "layout": "gallery (4 cards)",
+          "photos": 4,
+          "status": "✅ Complete"
+        },
+        "section_3": {
+          "name": "발제",
+          "layout": "solo (centered large)",
+          "photos": 1,
+          "status": "✅ Complete"
+        },
+        "section_4": {
+          "name": "다과회/특강",
+          "layout": "stagger (2col offset)",
+          "photos": 2,
+          "status": "✅ Complete"
+        },
+        "section_5": {
+          "name": "친목 활동",
+          "layout": "trio (3column)",
+          "photos": 3,
+          "status": "✅ Complete"
+        }
+      },
+      "qualityMetrics": {
+        "designMatchRate": 92,
+        "passItems": 67,
+        "warnItems": 6,
+        "failItems": 0,
+        "totalItems": 73,
+        "bem_compliance": "100%",
+        "mobile_responsive": "100%",
+        "analysisVersion": "3.0",
+        "analysisDate": "2026-03-01"
+      },
+      "testing": {
+        "method": "Manual + Gap Analysis",
+        "environments": [
+          "Desktop",
+          "Tablet (767px+)",
+          "Mobile (<767px)"
+        ],
+        "results": "✅ All tests passed",
+        "responsiveBreakpoint": "767px"
+      },
+      "warnings": {
+        "warning_1": {
+          "type": "Mobile nav Instagram URL",
+          "description": "mentalist.html:40, jinsim.html:43 -- mobile nav Instagram이 일반 instagram.com으로 연결",
+          "impact": "Medium (모바일 기능 버그)",
+          "action": "즉시 수정: mentalist_sogang / sogangpsy_official 각각 반영"
+        },
+        "warning_2": {
+          "type": "CSS dead code",
+          "description": ".activities-section CSS 잔존 (style.css:625-664, 40줄) -- 어떤 HTML에서도 미사용",
+          "impact": "Low (기능 무영향)",
+          "action": "삭제 권장 (.gallery-section은 jinsim.html에서 사용 중이므로 유지)"
+        },
+        "warning_3": {
+          "type": "Section 2 reveal class",
+          "description": "섹션 2에서 reveal 클래스 누락 (공통 규칙 미준수)",
+          "impact": "Low (기능 무영향 - JS에서 .intro 처리)",
+          "action": "의도적 생략으로 간주, 현상 유지"
+        },
+        "warning_4": {
+          "type": "Title/Meta SEO",
+          "description": "mentalist.html title에 '유일' 키워드 미반영",
+          "impact": "Low (SEO 최적화)",
+          "action": "선택적 업데이트"
+        },
+        "warning_5": {
+          "type": "jinsim.html placeholders",
+          "description": "jinsim.html 활동 사진 4장 placeholder 잔존",
+          "impact": "Low (jinsim 페이지 scope)",
+          "action": "이미지 수급 후 교체"
+        }
+      },
+      "lessonsLearned": {
+        "whatWentWell": [
+          "BEM 네이밍 규칙 100% 준수",
+          "기존 디자인 시스템과 완벽한 일관성 유지",
+          "5가지 이미지 레이아웃 변형 성공적 구현",
+          "반응형 CSS 모든 항목 설계대로 구현",
+          "97% 높은 검증 성공률",
+          "JavaScript 최소 수정으로 애니메이션 지원"
+        ],
+        "areasForImprovement": [
+          "CSS dead code 관리 프로세스 부족",
+          "섹션 2 reveal 클래스 생략에 대한 설계 명시 부재",
+          "구두 설계가 아닌 공식 Plan/Design 문서 필요"
+        ],
+        "nextActions": [
+          "Code cleanup checklist 도입 (HTML 제거 후 CSS/JS 정리 확인)",
+          "Cross-file validation (grep으로 다른 페이지 사용 여부 확인)",
+          "Design document first 정책 (마이너 업데이트도 문서화)"
+        ]
+      }
+    }
+  },
+  "statistics": {
+    "totalFeatures": 2,
+    "completedFeatures": 2,
+    "inProgressFeatures": 0,
+    "averageMatchRate": 96,
+    "totalCycles": 2
+  },
+  "timeline": {
+    "cycle1": {
+      "feature": "landing-page-v2",
+      "startDate": "2026-02-22",
+      "endDate": "2026-02-22",
+      "duration": "1 day",
+      "status": "✅ Complete"
+    },
+    "cycle2": {
+      "feature": "landing-page",
+      "startDate": "2026-02-20",
+      "endDate": "2026-02-22",
+      "duration": "3 days",
+      "status": "✅ Complete",
+      "matchRate": 97
+    },
+    "cycle3": {
+      "feature": "landing-page (v3 re-check)",
+      "startDate": "2026-03-01",
+      "endDate": "2026-03-01",
+      "duration": "1 day",
+      "status": "✅ Check Complete",
+      "matchRate": 92,
+      "scope": "사진 교체 12장 + CTA 3버튼 + 외부링크/cross-page 검증"
+    }
+  }
+}

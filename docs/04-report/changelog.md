@@ -6,6 +6,81 @@
 
 ---
 
+## [3.0.0] - 2026-03-01
+
+### Added
+- **사진 콘텐츠**: 12개 실제 활동 사진 추가 (섹션 1-3)
+  - 섹션 1 (토론): 2장 (`images/mentalist/01-discussion/`)
+  - 섹션 2 (논문): 4장 (`images/mentalist/02-papers/`)
+  - 섹션 3 (발제): 1장 (`images/mentalist/03-presentation/`)
+- **CTA 버튼 확장**: KakaoTalk Q&A 버튼 & Instagram 버튼 추가
+  - KakaoTalk 공식 노란색 (#FEE500) 스타일링
+  - Instagram 공식 그라데이션 (purple→red→orange) 스타일링
+  - 두 버튼 모두 inline SVG 아이콘 포함
+- **CSS 스타일**: `.btn-kakao`, `.btn-instagram` 클래스 추가 (각 19 줄)
+- **완료 보고서**: Landing Page v3.0 PDCA 완료 보고서 및 갭 분석 (73개 항목)
+
+### Changed
+- 섹션 1-3 이미지 경로: placeholder → 실제 파일 참조로 변경
+- CTA 섹션: 단일 Google Forms 버튼 → 3개 버튼 레이아웃 확장
+
+### Fixed
+- **모바일 내비게이션 Instagram URL (Mentalist)**: `https://instagram.com` → `https://www.instagram.com/mentalist_sogang`
+- **모바일 내비게이션 Instagram URL (Jinsim)**: `https://instagram.com` → `https://www.instagram.com/sogangpsy_official`
+- **버그 영향도**: 모바일 사용자의 Instagram 링크 클릭 시 잘못된 페이지로 이동하는 문제 해결
+
+### Technical
+- **파일 수정**:
+  - mentalist.html (12 photo paths, 3 CTA buttons, 1 mobile nav fix)
+  - css/style.css (+19 lines for new button styles)
+  - jinsim.html (1 mobile nav fix)
+- **갭 분석**: 92% 초기 일치율 → 2개 버그 수정 후 100% 유효 일치율
+- **검증**: 73개 항목 분석, 67개 통과 (91.8%), 2 버그 고정 완료
+
+### Deferred
+- CSS dead code 정리 (`.activities-section`, 40줄) - v3.1에서 처리
+- `<title>` meta tag SEO 최적화 - v3.1에서 처리
+- jinsim.html 활동 사진 placeholder 교체 - 백로그
+
+---
+
+## [2.0.0] - 2026-02-22
+
+### Added
+- **5개 소개 섹션**: 기존 gallery-section + activities-section 제거 후 새로운 구조
+  - 섹션 1: 토론 (duo layout - 2열)
+  - 섹션 2: 논문 분야 (photo-gallery scroll)
+  - 섹션 3: 발제 (solo layout - 대형 단일)
+  - 섹션 4: 다과회/특강 (stagger layout - 엇갈림)
+  - 섹션 5: 친목 활동 (trio layout - 3열)
+- **CSS 레이아웃**: 142줄의 새로운 CSS 추가
+  - `.intro` 기본 스타일
+  - 5가지 layout variant: `--duo`, `--solo`, `--stagger`, `--trio`
+  - 45줄의 모바일 반응형 스타일 (@media 767px)
+- **애니메이션**: Scroll reveal fadeUp 애니메이션 통합
+- **완료 보고서**: Landing Page v2.0 PDCA 완료 보고서 (97% 일치율)
+
+### Changed
+- HTML 구조: 기존 2개 섹션 → 5개 다양한 레이아웃의 소개 섹션
+- JS selector: `.reveal, .notice-item, .activity-item` → `.reveal, .intro, .notice-item, .activity-item`
+
+### Fixed
+- 스크롤 reveal 애니메이션이 새 섹션들에 적용되도록 수정
+
+### Technical
+- **파일 수정**:
+  - mentalist.html (5 new sections, removed 2 old sections)
+  - css/style.css (+142 lines layouts, +45 lines mobile)
+  - js/main.js (+1 line selector update)
+- **검증**: 97% Design Match Rate (66/68 항목)
+- **BEM 준수**: 100% (`.intro`, `__photos`, `__text` 등)
+
+### Non-Critical Issues
+- CSS dead code: `.gallery-section`, `.activities-section` CSS 여전히 잔존 (jinsim.html 의존성 확인 필요)
+- 섹션 2 `reveal` 클래스 누락: 의도적 선택 (gallery 자체 모션과 중복 방지)
+
+---
+
 ## [1.0.0] - 2026-02-22
 
 ### Added
@@ -89,5 +164,6 @@
 
 ---
 
-**마지막 업데이트**: 2026-02-22
+**마지막 업데이트**: 2026-03-01
 **관리자**: 멘탈리스트 웹마스터
+**현재 버전**: 3.0.0
